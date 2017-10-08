@@ -11,6 +11,12 @@ import org.camunda.bpm.engine.impl.cfg.ProcessEnginePlugin;
 import org.camunda.bpm.engine.impl.incident.IncidentHandler;
 import org.camunda.bpm.engine.runtime.Incident;
 
+/**
+ * Process engine plugin to add handlers for parsing bpmn and incidents
+ * 
+ * @author dxiong
+ *
+ */
 public class ConsoleProcessEnginePlugin implements ProcessEnginePlugin {
 
   private static final Logger LOGGER = Logger.getLogger(ProcessEnginePlugin.class.getName());

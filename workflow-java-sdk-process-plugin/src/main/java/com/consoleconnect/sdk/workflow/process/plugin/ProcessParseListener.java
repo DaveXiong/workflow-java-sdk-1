@@ -11,6 +11,12 @@ import org.camunda.bpm.engine.impl.pvm.process.ActivityImpl;
 import org.camunda.bpm.engine.impl.pvm.process.ScopeImpl;
 import org.camunda.bpm.engine.impl.util.xml.Element;
 
+/**
+ * Listener for parsing bpmn process
+ * 
+ * @author dxiong
+ *
+ */
 public class ProcessParseListener extends AbstractBpmnParseListener implements BpmnParseListener {
 
   private static final Logger LOGGER = Logger.getLogger(ProcessParseListener.class.getName());

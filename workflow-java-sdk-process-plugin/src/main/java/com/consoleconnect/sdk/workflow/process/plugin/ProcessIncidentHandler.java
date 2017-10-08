@@ -10,6 +10,8 @@ import org.camunda.bpm.engine.impl.incident.DefaultIncidentHandler;
 import org.camunda.bpm.engine.impl.incident.IncidentContext;
 
 /**
+ * Incident event handler
+ * 
  * @author dxiong
  *
  */
@@ -33,7 +35,7 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
 
     LOGGER.log(Level.INFO, () -> "handleIncident:" + context + message);
 
-    // TODO: FIXME: send email
+    // add business logic here to handle new incident
 
   }
 
@@ -49,7 +51,7 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
 
     LOGGER.log(Level.INFO, () -> "resolveIncident:" + context);
 
-    // TODO: FIXME: send email
+    // add business logic here to handle a incident was resolved
 
 
   }
@@ -65,7 +67,7 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
     super.deleteIncident(context);
 
     LOGGER.log(Level.INFO, () -> "deleteIncident:" + context);
-    // TODO: FIXME: send email
+    // add business log here to handle a incident was deleted
 
 
   }
