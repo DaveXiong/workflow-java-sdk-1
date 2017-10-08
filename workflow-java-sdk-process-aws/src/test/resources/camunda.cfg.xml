@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="processEngineConfiguration"
+		class="org.camunda.bpm.extension.process_test_coverage.junit.rules.ProcessCoverageInMemProcessEngineConfiguration">
+		<property name="history" value="full" />
+		<property name="expressionManager">
+			<bean class="org.camunda.bpm.engine.test.mock.MockExpressionManager" />
+		</property>
+		<property name="processEnginePlugins">
+			<list>
+				<bean class="org.camunda.spin.plugin.impl.SpinProcessEnginePlugin" />
+				<bean class="org.camunda.connect.plugin.impl.ConnectProcessEnginePlugin" />
+			</list>
+		</property>
+		
+		<!-- <property name="jobExecutorActivate" value="true" /> -->
+		
+	</bean>
+
+	<!-- bind the process engine service as Spring Bean -->
+	<bean name="processEngineService" class="org.camunda.bpm.BpmPlatform"
+		factory-method="getProcessEngineService" />
+
+	<!-- bind the default process engine as Spring Bean -->
+	<bean name="processEngine" factory-bean="processEngineService"
+	factory-method="getDefaultProcessEngine" />
+
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
+
+	<!-- bootstrap the process application -->
+	<bean id="awsProcessApplication"
+		class="org.camunda.bpm.engine.spring.application.SpringServletProcessApplication" />
+
+</beans>

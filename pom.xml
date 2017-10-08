@@ -1,0 +1,137 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.consoleconnect.sdk.workflow</groupId>
+	<artifactId>workflow-java-sdk</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>workflow-java-sdk-process-aws</module>
+		<module>workflow-java-sdk-process-plugin</module>
+	</modules>
+	<organization>
+		<name>ConsoleConnect</name>
+		<url>https://www.consoleconnect.com/</url>
+	</organization>
+	<scm>
+		<url>https://github.com/iixlabs/workflow-java-sdk</url>
+		<developerConnection>Dave Xiong</developerConnection>
+	</scm>
+
+	<developers>
+		<developer>
+			<id>DaveXiong</id>
+			<name>Dave Xiong</name>
+			<email>hxiong@consoleconnect.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<camunda.version>7.7.0</camunda.version>
+		<failOnMissingWebXml>false</failOnMissingWebXml>
+		<junit.version>4.12</junit.version>
+		<rxjava2.version>2.0.6</rxjava2.version>
+		<retrofit2.version>2.2.0</retrofit2.version>
+		<okhttp3.version>3.6.0</okhttp3.version>
+		<mockito.version>2.10.0</mockito.version>
+		<slf4j.version>1.7.24</slf4j.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+
+	</properties>
+
+
+	<repositories>
+		<repository>
+			<id>camunda-bpm-nexus</id>
+			<name>Camunda BPM Maven Repository</name>
+			<url>https://app.camunda.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>in-project</id>
+			<name>In Project Repo</name>
+			<url>file://${project.basedir}/libs</url>
+		</repository>
+	</repositories>
+
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.camunda.bpm</groupId>
+				<artifactId>camunda-bom</artifactId>
+				<version>${camunda.version}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.camunda.bpm.dmn</groupId>
+				<artifactId>camunda-engine-dmn-bom</artifactId>
+				<version>${camunda.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.24</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.7.24</version>
+			</dependency>
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+			</dependency>
+
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.14.1</version>
+				<configuration>
+
+				</configuration>
+			</plugin>
+
+
+		</plugins>
+	</build>
+</project>
