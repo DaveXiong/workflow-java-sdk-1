@@ -19,6 +19,10 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
 
   private static final Logger LOGGER = Logger.getLogger(ProcessIncidentHandler.class.getName());
 
+  /**
+   * Generic process incident handler
+   * @param type @see Incident
+   */
   public ProcessIncidentHandler(String type) {
     super(type);
   }
