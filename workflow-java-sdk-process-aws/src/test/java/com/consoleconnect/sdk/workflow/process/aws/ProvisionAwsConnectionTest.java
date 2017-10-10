@@ -47,8 +47,8 @@ public class ProvisionAwsConnectionTest extends AbstractRuleEngineUnitTest
   /**
    * Just tests if the process definition is deployable.
    */
-  // @Test
-  // @Deployment(resources = "provisionAwsConnection.bpmn")
+  @Test
+  @Deployment(resources = "provisionAwsConnection.bpmn")
   public void testParsingAndDeployment() {
     // nothing is done here, as we just want to check for exceptions during
     // deployment

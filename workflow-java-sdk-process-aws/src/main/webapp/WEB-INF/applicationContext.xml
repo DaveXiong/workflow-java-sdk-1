@@ -28,7 +28,15 @@
 	<bean id="awsProcessApplication"
 		class="org.camunda.bpm.engine.spring.application.SpringServletProcessApplication" />
 
-	<context:component-scan base-package="com.consoleconnect.sdk.workflow.process.aws" />
+	<context:component-scan
+		base-package="com.consoleconnect.sdk.workflow.process.aws, com.consoleconnect.sdk.workflow.service" />
 
-	<!-- <context:annotation-config /> <bean id="serviceTaskDelegate" class="com.consoleconnect.sdk.workflow.process.aws.LoggerDelegate"></bean> -->
+	<bean id="consoleRestServiceProvider"
+		class="com.consoleconnect.sdk.workflow.service.rest.RestServiceProvider">
+		<constructor-arg name="provider" value="console" />
+	</bean>
+	<bean id="slRestServiceProvider"
+		class="com.consoleconnect.sdk.workflow.service.rest.RestServiceProvider">
+		<constructor-arg name="provider" value="sl" />
+	</bean>
 </beans>

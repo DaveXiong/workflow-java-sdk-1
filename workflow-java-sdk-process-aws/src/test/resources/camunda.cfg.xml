@@ -43,5 +43,5 @@
 	<!-- bootstrap the process application -->
 	<bean id="awsProcessApplication"
 		class="org.camunda.bpm.engine.spring.application.SpringServletProcessApplication" />
-
+		
 </beans>
