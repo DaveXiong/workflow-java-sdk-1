@@ -24,7 +24,7 @@ import org.junit.Test;
 /**
  * Test case starting an in-memory database-backed Process Engine.
  */
-public class RestServiceTest extends AbstractRuleEngineUnitTest {
+public class RestServiceTest{
 
 
   @ClassRule

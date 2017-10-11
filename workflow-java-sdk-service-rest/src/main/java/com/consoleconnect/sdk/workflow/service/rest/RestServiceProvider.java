@@ -3,10 +3,11 @@
  */
 package com.consoleconnect.sdk.workflow.service.rest;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
@@ -20,7 +21,7 @@ import org.springframework.web.client.RestTemplate;
  */
 public class RestServiceProvider {
 
-  Logger log = LoggerFactory.getLogger(this.getClass());
+  Logger log = Logger.getLogger(this.getClass().getName());
 
 
   private String provider;
@@ -30,14 +31,14 @@ public class RestServiceProvider {
 
   @Autowired
   private Environment env;
-  
+
   public RestServiceProvider(String provider) {
     this.provider = provider;
   }
 
   @PostConstruct
   public void initi() {
-    log.info("created rest service provider:{}", provider);
+    log.log(Level.INFO, "created rest service provider:{0}", provider);
   }
 
 
@@ -64,13 +65,13 @@ public class RestServiceProvider {
   public ResponseEntity<Object> execute(Request request) {
     String url = getBaseUrl() + request.getEndPoint();
 
-    log.info("{} {}", request.getMethod(), url);
+    log.log(Level.INFO, "{0} {1}", new Object[] {request.getMethod(), url});
 
     HttpHeaders headers = new HttpHeaders();
     if (request.getHeaders() != null) {
       headers.setAll(request.getHeaders());
     }
-    
+
     return getRestTemplate().exchange(url, request.getMethod(),
         new HttpEntity<String>(request.getBody(), headers), Object.class);
 

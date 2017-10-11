@@ -4,6 +4,7 @@
 package com.consoleconnect.sdk.workflow.process.aws;
 
 import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -23,8 +24,7 @@ import com.consoleconnect.sdk.workflow.service.rest.RestClient;
 @Component("restServiceDelegate")
 public class RestServiceAdapter implements JavaDelegate {
 
-  private static final Logger LOGGER = Logger.getLogger(RestServiceAdapter.class.getName());
-
+  private final Logger log = Logger.getLogger(RestServiceAdapter.class.getName());
 
   @Autowired
   private RestClient client;
@@ -58,12 +58,12 @@ public class RestServiceAdapter implements JavaDelegate {
     Request request = Request.build().withProvider(provider).withMethod(method)
         .withEndPoint(endpoint).withHeaders(headers).withBody(body);
 
-    LOGGER.info(request.toString());
+    log.log(Level.INFO,"{0}", request);
 
 
     ResponseEntity<Object> response = client.execute(request);
 
-    LOGGER.info(response.toString());
+    log.log(Level.INFO,"{0}", response);
 
   }
 

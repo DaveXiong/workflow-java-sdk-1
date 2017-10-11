@@ -21,6 +21,7 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
 
   /**
    * Generic process incident handler
+   * 
    * @param type @see Incident
    */
   public ProcessIncidentHandler(String type) {
@@ -53,7 +54,8 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
   public void resolveIncident(IncidentContext context) {
     super.resolveIncident(context);
 
-    LOGGER.log(Level.INFO, () -> "resolveIncident:" + context);
+    LOGGER.log(Level.INFO, () -> "resolveIncident:" + context.getActivityId() + ":"
+        + context.getExecutionId() + ":" + context.getConfiguration());
 
     // add business logic here to handle a incident was resolved
 
@@ -70,7 +72,8 @@ public class ProcessIncidentHandler extends DefaultIncidentHandler {
   public void deleteIncident(IncidentContext context) {
     super.deleteIncident(context);
 
-    LOGGER.log(Level.INFO, () -> "deleteIncident:" + context);
+    LOGGER.log(Level.INFO, () -> "deleteIncident:" + context.getActivityId() + ":"
+        + context.getExecutionId() + ":" + context.getConfiguration());
     // add business log here to handle a incident was deleted
 
 

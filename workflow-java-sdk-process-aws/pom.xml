@@ -53,6 +53,35 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.consoleconnect.sdk.workflow</groupId>
+			<artifactId>workflow-java-sdk-service-rest</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
@@ -136,15 +165,6 @@
 		</dependency>
 
 
-
-		<!-- Add your own dependencies here, if in compile scope, they are added 
-			to the war -->
-
-		<dependency>
-			<groupId>com.consoleconnect.sdk.workflow</groupId>
-			<artifactId>workflow-java-sdk-service-rest</artifactId>
-			<version>0.0.1</version>
-		</dependency>
 	</dependencies>
 
 
