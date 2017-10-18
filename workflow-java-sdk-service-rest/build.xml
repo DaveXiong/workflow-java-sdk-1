@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="workflow-java-sdk-process-aws" default="deploy.tomcat">
 
+	<property file="../build.properties" />
 	<property file="build.properties" />
 	<property file="${user.home}/.camunda/build.properties" />
 	<property name="target.dir" value="target" />
@@ -23,7 +24,7 @@
 	</target>
 
 	<target name="undeploy.tomcat" description="Deletes the process application from the deployment directory defined in '${basedir}/build.properties' or '${user.home}/.camunda/build.properties'">
-		<delete file="${deploy.tomcat.dir}/${ant.project.name}.jar" />
+		<delete file="${deploy.tomcat.dir}/${project.name}.jar" />
 	</target>
 	
 </project>

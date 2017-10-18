@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.10.0">
+  <bpmn:process id="orderTest" name="orderTest" isExecutable="true">
+    <bpmn:extensionElements>
+      <camunda:properties>
+        <camunda:property name="id" />
+        <camunda:property name="name" />
+        <camunda:property name="popUuid" />
+      </camunda:properties>
+    </bpmn:extensionElements>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_01skqyr</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0p7hmnl">
+        <bpmn:targetRef>DataObjectReference_1l4mlo7</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+      <bpmn:dataOutputAssociation id="DataOutputAssociation_0dsjkt0">
+        <bpmn:targetRef>DataObjectReference_1ug5t27</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_01skqyr" sourceRef="StartEvent_1" targetRef="Task_1n0dtnz" />
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0p6j1jh">
+      <bpmn:incoming>SequenceFlow_1ugpaz5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0p8g5y7</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1u8yak2</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="SequenceFlow_1ugpaz5" sourceRef="Task_1n0dtnz" targetRef="ExclusiveGateway_0p6j1jh" />
+    <bpmn:sequenceFlow id="SequenceFlow_0p8g5y7" sourceRef="ExclusiveGateway_0p6j1jh" targetRef="Task_1muy5du">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[ ${S(order).prop("speed").numberValue() == 100}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="EndEvent_1gx823b">
+      <bpmn:incoming>SequenceFlow_0cvr8ht</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0cvr8ht" sourceRef="Task_1muy5du" targetRef="EndEvent_1gx823b" />
+    <bpmn:sequenceFlow id="SequenceFlow_1u8yak2" sourceRef="ExclusiveGateway_0p6j1jh" targetRef="Task_15oc6rz">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression"><![CDATA[ ${S(order).prop("speed").numberValue() == 200}]]></bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="EndEvent_04ai082">
+      <bpmn:incoming>SequenceFlow_0e4bog1</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0e4bog1" sourceRef="Task_15oc6rz" targetRef="EndEvent_04ai082" />
+    <bpmn:serviceTask id="Task_1n0dtnz" name="LOG DATA1" camunda:asyncBefore="true" camunda:delegateExpression="#{serviceTaskDelegate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="data">
+            <camunda:map>
+              <camunda:entry key="speed"><![CDATA[${S(order).prop("speed").numberValue()}]]></camunda:entry>
+              <camunda:entry key="name">parameterName</camunda:entry>
+            </camunda:map>
+          </camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_01skqyr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ugpaz5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_1l4mlo7" name="Order" dataObjectRef="DataObject_1ya1zl3">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="id" />
+          <camunda:property name="name" />
+          <camunda:property name="speed" />
+        </camunda:properties>
+      </bpmn:extensionElements>
+    </bpmn:dataObjectReference>
+    <bpmn:dataObject id="DataObject_1ya1zl3" />
+    <bpmn:serviceTask id="Task_1muy5du" name="LOG DATA2" camunda:delegateExpression="#{serviceTaskDelegate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="speed"><![CDATA[${S(order).prop("speed").numberValue()}]]></camunda:inputParameter>
+          <camunda:inputParameter name="id"><![CDATA[${S(order).prop("id").stringValue()}]]></camunda:inputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0p8g5y7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0cvr8ht</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_15oc6rz" name="LOG DATA3" camunda:delegateExpression="#{serviceTaskDelegate}">
+      <bpmn:incoming>SequenceFlow_1u8yak2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0e4bog1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:dataObjectReference id="DataObjectReference_1ug5t27" name="Pop" dataObjectRef="DataObject_1tts0tv" />
+    <bpmn:dataObject id="DataObject_1tts0tv" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="orderTest">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="173" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_01skqyr_di" bpmnElement="SequenceFlow_01skqyr">
+        <di:waypoint xsi:type="dc:Point" x="209" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="298" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="253.5" y="100" width="0" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0p6j1jh_di" bpmnElement="ExclusiveGateway_0p6j1jh" isMarkerVisible="true">
+        <dc:Bounds x="483" y="95" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="508" y="150" width="0" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ugpaz5_di" bpmnElement="SequenceFlow_1ugpaz5">
+        <di:waypoint xsi:type="dc:Point" x="398" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="434" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="434" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="483" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="449" y="115" width="0" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0p8g5y7_di" bpmnElement="SequenceFlow_0p8g5y7">
+        <di:waypoint xsi:type="dc:Point" x="533" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="627" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="535" y="100" width="90" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_1gx823b_di" bpmnElement="EndEvent_1gx823b">
+        <dc:Bounds x="842" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="860" y="143" width="0" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0cvr8ht_di" bpmnElement="SequenceFlow_0cvr8ht">
+        <di:waypoint xsi:type="dc:Point" x="727" y="120" />
+        <di:waypoint xsi:type="dc:Point" x="842" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="739.5" y="100" width="90" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1u8yak2_di" bpmnElement="SequenceFlow_1u8yak2">
+        <di:waypoint xsi:type="dc:Point" x="508" y="145" />
+        <di:waypoint xsi:type="dc:Point" x="508" y="208" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="171.5" width="90" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_04ai082_di" bpmnElement="EndEvent_04ai082">
+        <dc:Bounds x="490" y="343" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="508" y="384" width="0" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0e4bog1_di" bpmnElement="SequenceFlow_0e4bog1">
+        <di:waypoint xsi:type="dc:Point" x="508" y="288" />
+        <di:waypoint xsi:type="dc:Point" x="508" y="343" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="478" y="310.5" width="90" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0r1lz3e_di" bpmnElement="Task_1n0dtnz">
+        <dc:Bounds x="298" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1l4mlo7_di" bpmnElement="DataObjectReference_1l4mlo7">
+        <dc:Bounds x="104" y="180" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="108" y="235" width="29" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0p7hmnl_di" bpmnElement="DataOutputAssociation_0p7hmnl">
+        <di:waypoint xsi:type="dc:Point" x="180" y="134" />
+        <di:waypoint xsi:type="dc:Point" x="140" y="186" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0js5t47_di" bpmnElement="Task_1muy5du">
+        <dc:Bounds x="627" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0pwlqcb_di" bpmnElement="Task_15oc6rz">
+        <dc:Bounds x="458" y="208" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_1ug5t27_di" bpmnElement="DataObjectReference_1ug5t27">
+        <dc:Bounds x="104" y="-5" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="112" y="50" width="20" height="10" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataOutputAssociation_0dsjkt0_di" bpmnElement="DataOutputAssociation_0dsjkt0">
+        <di:waypoint xsi:type="dc:Point" x="181" y="105" />
+        <di:waypoint xsi:type="dc:Point" x="140" y="44" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

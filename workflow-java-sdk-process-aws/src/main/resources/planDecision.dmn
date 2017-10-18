@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="definitions_0zqstit" name="definitions" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="planDecision" name="plan decision">
+    <extensionElements>
+      <biodi:bounds x="200" y="200" width="180" height="80" />
+      <biodi:edge source="InputData_1qun1kb">
+        <biodi:waypoints x="176" y="402" />
+        <biodi:waypoints x="270" y="280" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1qun1kb" />
+    </informationRequirement>
+    <decisionTable id="decisionTable">
+      <input id="input1" label="company">
+        <inputExpression id="inputExpression1" typeRef="string">        <text>company</text>
+</inputExpression>
+      </input>
+      <output id="output1" label="plan" name="plan" typeRef="string" />
+      <rule id="row-763951075-3">
+        <inputEntry id="UnaryTests_1r5fedh">        <text><![CDATA["CONSOLE"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1m0cyvf">        <text><![CDATA["PRO"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-763951075-4">
+        <inputEntry id="UnaryTests_16thpwz">        <text><![CDATA["IIX"]]></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_1fkmcdw">        <text><![CDATA["STANDARD"]]></text>
+</outputEntry>
+      </rule>
+      <rule id="row-763951075-5">
+        <inputEntry id="UnaryTests_1ob8wvy">        <text></text>
+</inputEntry>
+        <outputEntry id="LiteralExpression_01ra5gw">        <text><![CDATA["FREE"]]></text>
+</outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1qun1kb" name="company">
+    <extensionElements>
+      <biodi:bounds x="95" y="402" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>

@@ -9,6 +9,10 @@
 		<module>workflow-java-sdk-process-aws</module>
 		<module>workflow-java-sdk-process-plugin</module>
 		<module>workflow-java-sdk-service-rest</module>
+
+		<module>workflow-java-sdk-process-azure</module>
+		<module>workflow-java-sdk-process-connection</module>
+		<module>workflow-java-sdk-process-port</module>
 	</modules>
 	<organization>
 		<name>ConsoleConnect</name>
@@ -41,9 +45,11 @@
 		<okhttp3.version>3.6.0</okhttp3.version>
 		<mockito.version>2.10.0</mockito.version>
 		<spring.version>4.2.3.RELEASE</spring.version>
+		<spring.boot.version>1.5.4.RELEASE</spring.boot.version>
+
 		<javax.servlet.version>3.0.1</javax.servlet.version>
 		<slf4j.version>1.7.24</slf4j.version>
-		<log4j.version>2.9.1</log4j.version>
+		<log4j.version>2.6.2</log4j.version>
 
 	</properties>
 
@@ -182,8 +188,9 @@
 				<scope>test</scope>
 			</dependency>
 
-
-
+			<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-releasetrain</artifactId> 
+				<version>Fowler-SR2</version> <scope>import</scope> <type>pom</type> </dependency> -->
+			
 		</dependencies>
 	</dependencyManagement>
 
@@ -259,4 +266,5 @@
 
 		</plugins>
 	</build>
+	<name>Workflow Java SDK</name>
 </project>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="workflow-java-sdk-process-aws" default="deploy.tomcat">
 
+	<property file="../build.properties" />
 	<property file="build.properties" />
 	<property file="${user.home}/.camunda/build.properties" />
 	<property name="target.dir" value="target" />
@@ -19,12 +20,12 @@
 	<target name="deploy.tomcat" depends="package.mvn, copy.package.into.tomcat" description="Copies the process application to the deployment directory defined in '${basedir}/build.properties' or '${user.home}/.camunda/build.properties'" />
 
 	<target name="copy.package.into.tomcat">
-		<fail unless="deploy.tomcat.dir" message="No deployment folder has been configured. Please copy the file '${basedir}/build.properties.example' to '${basedir}/build.properties' or '${user.home}/.camunda/build.properties' and change it according to your environment." />
-		<copy file="${target.dir}/${ant.project.name}.war" todir="${deploy.tomcat.dir}" />
+		<fail unless="deploy.tomcat.webapps" message="Pls configure deploy.tomcat.webapps in build.properties" />
+		<copy file="${target.dir}/${ant.project.name}.war" todir="${deploy.tomcat.webapps}" />
 	</target>
 
 	<target name="undeploy.tomcat" description="Deletes the process application from the deployment directory defined in '${basedir}/build.properties' or '${user.home}/.camunda/build.properties'">
-		<delete file="${deploy.tomcat.dir}/${ant.project.name}.war" />
+		<delete file="${deploy.tomcat.webapps}/${ant.project.name}.war" />
 	</target>
 	
 </project>

@@ -65,4 +65,5 @@
 		</dependency>
 
 	</dependencies>
+	<name>Generic Rest Service API</name>
 </project>

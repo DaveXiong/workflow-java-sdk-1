@@ -20,12 +20,12 @@
 	<target name="deploy.tomcat" depends="package.mvn, copy.package.into.tomcat" description="Copies the process application to the deployment directory defined in '${basedir}/build.properties' or '${user.home}/.camunda/build.properties'" />
 
 	<target name="copy.package.into.tomcat">
-		<fail unless="deploy.tomcat.lib" message="Pls configure deploy.tomcat.lib in build.properties" />
-		<copy file="${target.dir}/${project.name}.jar" todir="${deploy.tomcat.lib}" />
+		<fail unless="deploy.tomcat.webapps" message="Pls configure deploy.tomcat.webapps in build.properties" />
+		<copy file="${target.dir}/${project.name}.war" todir="${deploy.tomcat.webapps}" />
 	</target>
 
 	<target name="undeploy.tomcat" description="Deletes the process application from the deployment directory defined in '${basedir}/build.properties' or '${user.home}/.camunda/build.properties'">
-		<delete file="${deploy.tomcat.lib}/${project.name}.jar" />
+		<delete file="${deploy.tomcat.webapps}/${project.name}.war" />
 	</target>
 	
 </project>
