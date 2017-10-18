@@ -12,4 +12,4 @@ if [ -z "$1" ]; then
 fi
 
 
-mvn sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN -Dmaven.test.failure.ingore=true -Dsonar.jacoco.reportMissing.force.zero=true -Dsonar.host.url=https://sq.ci.consoleconnect.com -Dsonar.analysis.model=preview  -Dsonar.github.pullRequest=$PR -Dsonar.github.repository=iixlabs/workflow-java-sdk -Dsonar.github.oauth=$GITHUB_TOKEN
+mvn sonar:sonar -Dsonar.login=$SONARQUBE_TOKEN -Dmaven.test.failure.ingore=true -Dsonar.jacoco.reportMissing.force.zero=true -Dsonar.host.url=https://sq.ci.consoleconnect.com -Dsonar.analysis.mode=preview  -Dsonar.github.pullRequest=$PR -Dsonar.github.repository=iixlabs/workflow-java-sdk -Dsonar.github.oauth=$GITHUB_TOKEN
